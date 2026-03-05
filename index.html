@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirm Unsubscribe</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f8f9fa, #eef2f7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #ffffff;
+      width: 420px;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .email {
+      font-weight: bold;
+      color: #000;
+      margin: 10px 0;
+      word-break: break-all;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      background: #dc3545;
+      color: white;
+    }
+
+    .btn:hover {
+      background: #c82333;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Are you sure you want to unsubscribe?</h1>
+    <p>You will stop receiving updates and insights.</p>
+
+    <div class="email" id="emailText"></div>
+
+    <button class="btn" onclick="confirmUnsub()">Yes, Unsubscribe</button>
+
+    <div class="loading" id="loadingText">Processing your request...</div>
+  </div>
+
+<script>
+
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec";
+
+const params = new URLSearchParams(window.location.search);
+
+const email = params.get("email") || "";
+const campaign = params.get("campaigname") || "our updates";
+const category = params.get("categoryname") || "";
+
+/* show email */
+document.getElementById("emailText").innerText = email;
+
+function confirmUnsub(){
+
+  document.getElementById("loadingText").style.display="block";
+
+  fetch(WEBAPP_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      email:email,
+      campaign:campaign,
+      category:category,
+      ua:navigator.userAgent,
+      tz:Intl.DateTimeFormat().resolvedOptions().timeZone,
+      lang:navigator.language
+    })
+  })
+  .then(res => res.text())
+  .then(url => {
+      window.location.href = url; // redirect to success page
+  });
+
+}
+
+</script>
+
+</body>
+</html>
