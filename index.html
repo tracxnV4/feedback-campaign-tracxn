@@ -89,6 +89,8 @@ p{font-size:16px;color:var(--text-secondary);line-height:1.6;}
     <!-- TEXT WILL BE INSERTED HERE -->
     <p id="unsubscribeText"></p>
   </div>
+  
+  <button class="btn" onclick="confirmUnsub()">Yes, Unsubscribe</button>
 
   <div class="footer">
     <div class="footer-links">
@@ -115,21 +117,25 @@ const category = params.get("categoryname") || "";
 document.getElementById("unsubscribeText").innerHTML =
   `We've removed you from our <b>${campaign}</b> emails.<br>
    You won't receive further updates from your Account Manager.`;
+   
+ function confirmUnsub(){
+ 
+	/* SEND DATA */
+	fetch(WEBAPP_URL, {
+	  method: 'POST',
+	  mode: 'no-cors',
+	  headers: {'Content-Type': 'application/json'},
+	  body: JSON.stringify({
+		email,
+		campaign,
+		category,
+		ua: navigator.userAgent,
+		tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+		lang: navigator.language
+	  })
+	});
 
-/* SEND DATA */
-fetch(WEBAPP_URL, {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: {'Content-Type': 'application/json'},
-  body: JSON.stringify({
-    email,
-    campaign,
-    category,
-    ua: navigator.userAgent,
-    tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    lang: navigator.language
-  })
-});
+}
 </script>
 
 </body>
