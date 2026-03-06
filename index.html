@@ -18,7 +18,7 @@ function unsubscribe(){
 
 var email = new URLSearchParams(window.location.search).get("email");
 
-fetch("YOUR_GOOGLE_SCRIPT_URL?email="+email)
+fetch("https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email="+email)
 
 .then(()=>{
 
