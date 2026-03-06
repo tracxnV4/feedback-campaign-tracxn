@@ -23,8 +23,8 @@ function doGet(e) {
 function saveUnsubscribe(email) {
 
   var sheet = SpreadsheetApp
-  .openById("YOUR_SHEET_ID")
-  .getSheetByName("Unsubscribe Data");
+  .openById("1iMqTW3LrRo6DmrQrS09Lo0mDWWi5WdJdwWhJC1-_OJw")
+  .getSheetByName("Unsubscribe Log");
 
   sheet.appendRow([
     email,
