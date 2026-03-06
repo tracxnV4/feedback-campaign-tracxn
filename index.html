@@ -14,17 +14,23 @@
 
 <script>
 
-function unsubscribe(){
+async function unsubscribe(){
 
-var email = new URLSearchParams(window.location.search).get("email");
+const email = new URLSearchParams(window.location.search).get("email");
 
-fetch("https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email="+email)
+const url = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email=" + encodeURIComponent(email);
 
-.then(()=>{
+try {
 
-window.location.href="success.html";
+  await fetch(url);
 
-});
+  window.location.href = "success.html";
+
+} catch(err) {
+
+  alert("Something went wrong. Please try again.");
+
+}
 
 }
 
