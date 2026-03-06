@@ -1,70 +1,20 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Unsubscribed | Tracxn</title>
+  <base target="_top">
 </head>
-<body>
 
-<button class="btn" onclick="confirmUnsub()">Yes, Unsubscribe</button>
+<body style="font-family:Arial;text-align:center;margin-top:100px">
 
-<p id="statusMsg"></p>
+<h2>Unsubscribe Confirmation</h2>
 
-<script>
+<p>Are you sure you want to unsubscribe from our emails?</p>
 
-const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec";
+<a href="?action=unsubscribe&email=<?= email ?>">
+<button style="padding:10px 20px;background:red;color:white;border:none;border-radius:5px">
+Yes, Unsubscribe
+</button>
+</a>
 
-const params = new URLSearchParams(window.location.search);
-
-const email = params.get("email") || "";
-const campaign = params.get("campaigname") || "our updates";
-const category = params.get("categoryname") || "";
-
-document.getElementById("unsubscribeText").innerHTML =
-`You are about to unsubscribe <b>${email}</b> from <b>${campaign}</b> emails.`;
-
-
-function confirmUnsub(){
-
-document.getElementById("statusMsg").innerHTML = "Processing...";
-
-fetch(WEBAPP_URL,{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-email:email,
-campaign:campaign,
-category:category,
-ua:navigator.userAgent,
-tz:Intl.DateTimeFormat().resolvedOptions().timeZone,
-lang:navigator.language
-})
-})
-.then(()=>{
-
-document.querySelector(".content").innerHTML =
-`
-<div class="status-header">
-<svg class="icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
-</svg>
-<h1>Successfully Unsubscribed</h1>
-</div>
-
-<p>You will no longer receive these emails.</p>
-`;
-
-})
-.catch(()=>{
-document.getElementById("statusMsg").innerHTML="Something went wrong.";
-});
-
-}
-
-</script>
 </body>
 </html>
