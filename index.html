@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base target="_top">
+<title>Unsubscribe</title>
 </head>
 
 <body style="font-family:Arial;text-align:center;margin-top:100px">
 
 <h2>Unsubscribe Confirmation</h2>
 
-<p>Are you sure you want to unsubscribe from our emails?</p>
+<p>Do you want to unsubscribe?</p>
 
-<a href="?action=unsubscribe&email=<?= email ?>">
-<button style="padding:10px 20px;background:red;color:white;border:none;border-radius:5px">
-Yes, Unsubscribe
-</button>
-</a>
+<button onclick="unsubscribe()">Yes, Unsubscribe</button>
+
+<script>
+
+function unsubscribe(){
+
+var email = new URLSearchParams(window.location.search).get("email");
+
+fetch("YOUR_GOOGLE_SCRIPT_URL?email="+email)
+
+.then(()=>{
+
+window.location.href="success.html";
+
+});
+
+}
+
+</script>
 
 </body>
 </html>
