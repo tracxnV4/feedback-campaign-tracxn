@@ -64,7 +64,7 @@ async function unsubscribe(){
   const campaign = new URLSearchParams(window.location.search).get("campaign");
   const category = new URLSearchParams(window.location.search).get("category");
 
-  window.location.href = "success.html?email"+ encodeURIComponent(email) + "&campaign=" + campaign + "&category" + category;
+  window.location.href = "success.html?email="+ encodeURIComponent(email) + "&campaign=" + campaign + "&category=" + category;
 
 }
 
