@@ -61,13 +61,15 @@
 async function unsubscribe(){
 
   const email = new URLSearchParams(window.location.search).get("email");
-  const url = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email=" + encodeURIComponent(email);
+  const campaign = new URLSearchParams(window.location.search).get("campaign");
+  const category = new URLSearchParams(window.location.search).get("category");
+  
+  const url = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email=" + encodeURIComponent(email)+"&campaign="+campaign+"&category="+category;
 
-  fetch(url)
   
   await fetch(url);
 
-  window.location.href = "success.html";
+  window.location.href = "success.html?campaign=" + campaign;
 
 }
 
