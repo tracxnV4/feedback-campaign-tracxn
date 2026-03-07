@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Unsubscribe</title>
+  <title>Unsubscribe Confirmation</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6f8;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    .box{
+      background:white;
+      padding:40px;
+      border-radius:10px;
+      text-align:center;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      width:350px;
+    }
+
+    h2{
+      margin-bottom:20px;
+    }
+
+    button{
+      padding:10px 20px;
+      margin:10px;
+      border:none;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .confirm{
+      background:#e74c3c;
+      color:white;
+    }
+
+    .cancel{
+      background:#bdc3c7;
+    }
+  </style>
 </head>
 
-<body style="font-family:Arial;text-align:center;margin-top:100px">
+<body>
 
-<h2>Unsubscribe Confirmation</h2>
+<div class="box">
+  <h2>Unsubscribe</h2>
+  <p>Are you sure you want to unsubscribe from our emails?</p>
 
-<p>Do you want to unsubscribe?</p>
-
-<button onclick="unsubscribe()">Yes, Unsubscribe</button>
+  <button class="confirm" onclick="unsubscribe()">Yes, Unsubscribe</button>
+  <button class="cancel" onclick="goBack()">Cancel</button>
+</div>
 
 <script>
 
+
 async function unsubscribe(){
 
-const email = new URLSearchParams(window.location.search).get("email");
+  const email = new URLSearchParams(window.location.search).get("email");
+  const url = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email=" + encodeURIComponent(email);
 
-const url = "https://script.google.com/macros/s/AKfycbx9rc15-ssa34cRS3JMM_CT43b596ZnDmXdvITbcaTG3eaGxidJmmD39sTI9jGQ-bJBRA/exec?email=" + encodeURIComponent(email);
-
-try {
-
+  fetch(url)
+  
   await fetch(url);
 
   window.location.href = "success.html";
 
-} catch(err) {
-
-  alert("Something went wrong. Please try again.");
-
 }
 
+function goBack(){
+  window.history.back();
 }
 
 </script>
