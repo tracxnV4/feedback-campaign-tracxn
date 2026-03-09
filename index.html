@@ -1,79 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Unsubscribe Confirmation</title>
-  <style>
-    body{
-      font-family: Arial, sans-serif;
-      background:#f4f6f8;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      height:100vh;
-    }
 
-    .box{
-      background:white;
-      padding:40px;
-      border-radius:10px;
-      text-align:center;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1);
-      width:350px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    h2{
-      margin-bottom:20px;
-    }
+<title>Unsubscribe Confirmation</title>
 
-    button{
-      padding:10px 20px;
-      margin:10px;
-      border:none;
-      border-radius:6px;
-      cursor:pointer;
-      font-size:14px;
-    }
+<style>
 
-    .confirm{
-      background:#e74c3c;
-      color:white;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .cancel{
-      background:#bdc3c7;
-    }
-  </style>
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+  background:#f5f7fb;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+.box{
+
+  background:white;
+  padding:45px 40px;
+  border-radius:12px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  width:560px;
+  max-width:92%;
+
+}
+
+h2{
+
+  margin-bottom:15px;
+  font-size:22px;
+  color:#2d3436;
+
+}
+
+p{
+
+  color:#636e72;
+  font-size:14px;
+  line-height:1.6;
+  margin-bottom:30px;
+
+}
+
+.buttons{
+
+  display:flex;
+  justify-content:center;
+  gap:12px;
+
+}
+
+button{
+
+  padding:12px 18px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:14px;
+  transition:all .2s;
+
+}
+
+.confirm{
+
+  background:#e74c3c;
+  color:white;
+
+}
+
+.confirm:hover{
+
+  background:#c0392b;
+
+}
+
+.cancel{
+
+  background:#ecf0f1;
+
+}
+
+.cancel:hover{
+
+  background:#dfe6e9;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
 <div class="box">
-  <h2>Unsubscribe</h2>
-  <p>Are you sure you want to unsubscribe from our emails?</p>
 
-  <button class="confirm" onclick="unsubscribe()">Yes, Unsubscribe</button>
-  <button class="cancel" onclick="goBack()">Cancel</button>
+<h2>Unsubscribe from Emails</h2>
+
+<p>
+Please confirm if you would like to unsubscribe from our mailing list.
+Once confirmed, you will no longer receive email communications from us.
+You can subscribe again at any time.
+</p>
+
+<div class="buttons">
+
+<button class="confirm" onclick="unsubscribe()">
+Yes, Unsubscribe
+</button>
+
+<button class="cancel" onclick="goBack()">
+Cancel
+</button>
+
+</div>
+
 </div>
 
 <script>
 
-async function unsubscribe(){
+function unsubscribe(){
 
-  const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 
-  const email = params.get("email");
-  const campaign = params.get("campaign");
-  const category = params.get("category");
+const email = params.get("email");
+const campaign = params.get("campaign");
+const category = params.get("category");
 
-  window.location.href =
-    "success.html?email=" + encodeURIComponent(email) +
-    "&campaign=" + encodeURIComponent(campaign) +
-    "&category=" + encodeURIComponent(category);
+window.location.href =
+"success.html?email=" + encodeURIComponent(email) +
+"&campaign=" + encodeURIComponent(campaign) +
+"&category=" + encodeURIComponent(category);
 
 }
 
 function goBack(){
-  window.history.back();
+
+/* email links usually open with no history */
+
+if(document.referrer){
+  window.location.href=document.referrer;
+}else{
+  window.location.href="https://tracxn.com";
+}
+
 }
 
 </script>
