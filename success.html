@@ -117,16 +117,12 @@ document.getElementById("unsubscribeText").innerHTML =
    You won't receive further updates from your Account Manager.`;
  
 	/* SEND DATA */
-	fetch(WEBAPP_URL, {
-	  method: 'POST',
-	  mode: 'no-cors',
-	  headers: {'Content-Type': 'application/json'},
-	  body: JSON.stringify({
-		email,
-		campaign,
-		category
-	  })
-	});
+fetch(
+  WEBAPP_URL +
+  "?email=" + encodeURIComponent(email) +
+  "&campaign=" + encodeURIComponent(campaign) +
+  "&category=" + encodeURIComponent(category)
+);
 
 </script>
 
