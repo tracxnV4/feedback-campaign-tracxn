@@ -57,14 +57,18 @@
 
 <script>
 
-
 async function unsubscribe(){
 
-  const email = new URLSearchParams(window.location.search).get("email");
-  const campaign = new URLSearchParams(window.location.search).get("campaign");
-  const category = new URLSearchParams(window.location.search).get("category");
+  const params = new URLSearchParams(window.location.search);
 
-  window.location.href = "success.html?email="+ encodeURIComponent(email) + "&campaign=" + campaign + "&category=" + category;
+  const email = params.get("email");
+  const campaign = params.get("campaign");
+  const category = params.get("category");
+
+  window.location.href =
+    "success.html?email=" + encodeURIComponent(email) +
+    "&campaign=" + encodeURIComponent(campaign) +
+    "&category=" + encodeURIComponent(category);
 
 }
 
