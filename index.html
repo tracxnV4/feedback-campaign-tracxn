@@ -15,7 +15,7 @@
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
-  background:#f5f7fb;
+  background:#eef1f5;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -23,13 +23,22 @@ body{
   margin:0;
 }
 
+.container{
+  text-align:center;
+}
+
+.logo img{
+
+  height:32px;
+
+}
 .box{
 
   background:white;
   padding:45px 40px;
   border-radius:12px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
   width:560px;
   max-width:92%;
 
@@ -62,7 +71,7 @@ p{
 
 button{
 
-  padding:12px 18px;
+  padding:12px 20px;
   border:none;
   border-radius:8px;
   cursor:pointer;
@@ -73,26 +82,27 @@ button{
 
 .confirm{
 
-  background:#e74c3c;
+  background:#0d6efd;
   color:white;
 
 }
 
 .confirm:hover{
 
-  background:#c0392b;
+  background:#0a58ca;
 
 }
 
 .cancel{
 
-  background:#ecf0f1;
+  background:#e9ecef;
+  color:#495057;
 
 }
 
 .cancel:hover{
 
-  background:#dfe6e9;
+  background:#dee2e6;
 
 }
 
@@ -102,12 +112,19 @@ button{
 
 <body>
 
+<div class="container">
+
+<div class="logo" style="padding-bottom:10px;">
+<img src="tracxn_logo.png" alt="Tracxn Logo">
+</div>
+
 <div class="box">
 
 <h2>Unsubscribe from Emails?</h2>
 
 <p>
-Are you sure you would like to unsubscribe from our mailing list. Once you confirm, you will no longer receive email communications from us.
+Are you sure you would like to unsubscribe from our mailing list?  
+Once you confirm, you will no longer receive email communications from us.
 </p>
 
 <div class="buttons">
@@ -119,6 +136,8 @@ Yes, Unsubscribe
 <button class="cancel" onclick="goBack()">
 Cancel
 </button>
+
+</div>
 
 </div>
 
@@ -142,8 +161,6 @@ window.location.href =
 }
 
 function goBack(){
-
-/* email links usually open with no history */
 
 if(document.referrer){
   window.location.href=document.referrer;
